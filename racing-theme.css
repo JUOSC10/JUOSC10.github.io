@@ -1,0 +1,523 @@
+/* 赛车主题高级UI样式 */
+
+:root {
+    /* 赛车主题配色方案 */
+    --primary-color: #e10600; /* 法拉利红/赛车红 */
+    --secondary-color: #0090d4; /* 赛车蓝 */
+    --accent-color: #ffcc00; /* 赛车黄/警示黄 */
+    --dark-color: #121212; /* 碳纤维黑 */
+    --light-color: #f8f8f8; /* 浅灰/银色 */
+    --text-color: #333333;
+    --text-light: #ffffff;
+    --text-dark: #121212;
+    --border-radius: 6px;
+    --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', 'Microsoft YaHei', 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-color);
+    background-image: linear-gradient(45deg, #f8f8f8 25%, #f2f2f2 25%, #f2f2f2 50%, #f8f8f8 50%, #f8f8f8 75%, #f2f2f2 75%, #f2f2f2 100%);
+    background-size: 20px 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: var(--transition);
+    position: relative;
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+a:not(.btn):after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: var(--transition);
+}
+
+a:not(.btn):hover:after {
+    width: 100%;
+}
+
+ul {
+    list-style-type: none;
+    margin-left: 0;
+}
+
+li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+li:before {
+    content: '🏁';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-size: 14px;
+}
+
+/* 头部样式 */
+header {
+    background: var(--dark-color);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="50" height="50" x="0" y="0" fill="%23222222"/><rect width="50" height="50" x="50" y="50" fill="%23222222"/></svg>');
+    color: var(--text-light);
+    padding: 60px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+}
+
+header:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color), var(--primary-color));
+    background-size: 300% 100%;
+    animation: gradient-animation 3s ease infinite;
+}
+
+@keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: inline-block;
+}
+
+header h1:after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-color);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+header .subtitle {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    font-weight: 300;
+    margin-top: 15px;
+}
+
+/* 主要内容区域 */
+main {
+    padding: 50px 0;
+}
+
+section {
+    margin-bottom: 50px;
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--box-shadow);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+section h2 {
+    color: var(--dark-color);
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #eee;
+    position: relative;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+section h2:after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 3px;
+    background-color: var(--primary-color);
+    bottom: -2px;
+    left: 0;
+}
+
+/* 游戏卡片网格 */
+.game-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.game-card {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: var(--transition);
+    height: 100%;
+    box-shadow: var(--box-shadow);
+    position: relative;
+    z-index: 1;
+}
+
+.game-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%);
+    z-index: -1;
+}
+
+.game-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.game-card:hover .card-inner {
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.card-inner {
+    padding: 25px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.9);
+    position: relative;
+    z-index: 2;
+    transition: var(--transition);
+}
+
+.game-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.game-card h3:after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 3px;
+    background-color: var(--primary-color);
+    bottom: 0;
+    left: 0;
+}
+
+.game-card p {
+    margin-bottom: 20px;
+    flex-grow: 1;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* 按钮样式 */
+.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-align: center;
+    transition: var(--transition);
+    text-decoration: none;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+    z-index: -1;
+}
+
+.btn:hover {
+    background-color: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover:before {
+    left: 100%;
+}
+
+/* 页脚样式 */
+footer {
+    background-color: var(--dark-color);
+    color: var(--text-light);
+    padding: 40px 0;
+    position: relative;
+}
+
+footer:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color), var(--primary-color));
+    background-size: 300% 100%;
+    animation: gradient-animation 3s ease infinite;
+}
+
+/* 游戏详情页面样式 */
+.breadcrumb {
+    margin: 20px 0;
+    font-size: 0.9rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb a {
+    color: var(--secondary-color);
+    margin-right: 10px;
+}
+
+.breadcrumb span {
+    position: relative;
+    padding-left: 20px;
+}
+
+.breadcrumb span:before {
+    content: '>';
+    position: absolute;
+    left: 5px;
+    color: #999;
+}
+
+/* 标签页导航 */
+.game-tabs {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    margin-top: 30px;
+}
+
+.tabs-nav {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--dark-color);
+    border-bottom: none;
+}
+
+.tab-button {
+    padding: 15px 25px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-light);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.tab-button:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transition: var(--transition);
+    z-index: -1;
+}
+
+.tab-button:hover {
+    color: var(--accent-color);
+}
+
+.tab-button:hover:before {
+    transform: scaleX(1);
+}
+
+.tab-button.active {
+    color: var(--text-light);
+    background-color: rgba(225, 6, 0, 0.8);
+}
+
+.tab-button.active:before {
+    transform: scaleX(1);
+}
+
+.tab-contents {
+    padding: 30px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.2rem;
+    }
+    
+    header .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .tabs-nav {
+        flex-direction: column;
+    }
+    
+    .tab-button {
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .tab-button.active {
+        border-left: 3px solid var(--primary-color);
+    }
+    
+    section {
+        padding: 20px;
+    }
+}
+
+/* 动画效果 */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* 添加赛车元素 */
+.racing-stripe {
+    position: relative;
+}
+
+.racing-stripe:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -10px;
+    width: 5px;
+    background-color: var(--primary-color);
+}
+
+/* 赛车主题图标 */
+.racing-icon {
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+/* 速度计效果 */
+.speedometer {
+    position: relative;
+    width: 100%;
+    height: 8px;
+    background-color: #eee;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+.speedometer-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    width: 75%;
+    border-radius: 4px;
+    animation: speed-pulse 2s infinite;
+}
+
+@keyframes speed-pulse {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { opacity: 0.8; }
+}
